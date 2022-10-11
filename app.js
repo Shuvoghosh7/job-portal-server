@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 app.use(express.json());
 app.use(cors());
 //routes
-const hiringManagerRoute=require('./routes/hiring.manager.route')
+const hiringManagerRoute=require('./routes/jobs.route')
 
 
 
