@@ -7,7 +7,8 @@ const mongoose = require("mongoose");
 app.use(express.json());
 app.use(cors());
 //routes
-const hiringManagerRoute=require('./routes/jobs.route')
+const jobsRoute=require('./routes/jobs.route')
+const hiringManagerRoute=require('./routes/hiringManager.route')
 
 
 
@@ -16,7 +17,8 @@ app.get("/", (req, res) => {
 });
 
 // route colling
-app.use("/api/v1/jobPortal",hiringManagerRoute)
+app.use("/api/v1/jobPortal",jobsRoute)
+app.use("/api/v1/manager",hiringManagerRoute)
 
 
 

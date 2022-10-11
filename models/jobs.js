@@ -2,11 +2,19 @@ const mongoose = require("mongoose");
 const validator = require('validator');
 const{ObjectId}=mongoose.Schema.Types
 
-const hiringManagerSchema = mongoose.Schema({
+const jobsSchema = mongoose.Schema({
     jobTitle:{
         type:String,
         trim:true,
         require:true,
+    },
+    jobType:{
+        type:String,
+        require:true,
+        enum:{
+            values:["Remote","On-Site","Hybrid"],
+            message:"{VALUE} is not valid name"
+        }
     },
     jobDescription:String,
     jobLocation:{
@@ -21,27 +29,28 @@ const hiringManagerSchema = mongoose.Schema({
         type:Number
     },
     jobPostingDate:{
-        type:String,
-        require:true,
+        type: Date,
+        default: Date.now  
     },
     lastApplicationDate:{
-        type:String,
+        type: Date, 
         require:true,
     },
     vacancy:{
         type:String,
         require:true,
     },
-    hiringManager:[{
+    hiringManager:{
         name:String,
         id:{
-            type:ObjectId,
-            ref:"HiringManager"
+            type: ObjectId,
+            ref: "HiringManager",
+            require: true,
         }
-    }],
+    },
 
 })
 
-const Jobs = mongoose.model('Jobs', hiringManagerSchema);
+const Jobs = mongoose.model('Jobs', jobsSchema);
 
 module.exports=Jobs;
