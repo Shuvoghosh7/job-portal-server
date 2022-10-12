@@ -1,6 +1,7 @@
+const Candidate = require("../models/candidate");
 const Jobs = require("../models/jobs");
 
-exports.getJobsService = async (filters,queries) => {
+exports.getCandidateJobsService = async (filters,queries) => {
     const jobs = await Jobs.find(filters)
     .skip(queries.skip)
     .limit(queries.limit)
@@ -14,4 +15,9 @@ exports.getJobByIdService = async (id) => {
     const job = await Jobs.findOne({_id:id})
     .populate("hiringManager.id")
     return job;
+}
+
+exports.applyJobsService = async (data) => {
+    const result = await Candidate.create(data)
+    return result;
 }

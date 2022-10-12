@@ -1,4 +1,5 @@
-const { getJobsService, getJobByIdService } = require("../services/candidate.services");
+const { getJobByIdService, applyJobsService, getCandidateJobsService } = require("../services/candidate.services");
+const { getJobsService } = require("../services/jobs.services");
 
 exports.getJobs=async (req, res, next) => {
     try {
@@ -26,7 +27,7 @@ exports.getJobs=async (req, res, next) => {
         const fields=req.query.fields.split(',').join(' ')
         queries.fields=fields
       }
-      const manager=await getJobsService(filters,queries);
+      const manager=await getCandidateJobsService(filters,queries);
       res.status(200).json({
         stauts: "success",
         massage: "successfully get data for all jobs",
@@ -44,7 +45,6 @@ exports.getJobs=async (req, res, next) => {
   exports.getJobById=async (req, res, next) => {
     const {id}=req.params;
     try {
-      //create method
       const job=await getJobByIdService(id);
       if(!job){
         return res.status(400).json({
@@ -64,4 +64,21 @@ exports.getJobs=async (req, res, next) => {
         error : error.message
       })
     } 
+  }
+
+  exports.applyJobs=async (req, res, next) => {
+    try {
+      const result=await applyJobsService(req.body)
+      res.status(200).json({
+        stauts: "success",
+        massage: "successfully create a Jobs",
+        data: result
+      })
+    } catch (error) {
+      res.status(400).json({
+        stauts:"fail",
+        message: "Data is not inserted",
+        error : error.message
+      })
+    }  
   }

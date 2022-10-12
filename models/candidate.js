@@ -1,13 +1,9 @@
 const mongoose = require("mongoose");
 const validator = require('validator');
-
+const{ObjectId}=mongoose.Schema.Types
 const candidateSchema = mongoose.Schema({
     candidateName: {
         type: String,
-        required: [true, "Please provide a name for thid candidate"],
-        trim: true,
-        minLength: [4, "Name mast be 3 characters"],
-        maxLength: [100, "Name is too larges"],
       },
       email: {
         type: String,
@@ -28,9 +24,16 @@ const candidateSchema = mongoose.Schema({
         type: String,
         require:true
     },
+    applyFor:{
+        name:String,
+        id:{
+            type: ObjectId,
+            ref: "jobs",
+            require: true,
+        }
+    },
     uploadResume:{
         type:String,
-        required:true
     }
 
 })
