@@ -9,6 +9,7 @@ app.use(cors());
 //routes
 const jobsRoute=require('./routes/jobs.route')
 const hiringManagerRoute=require('./routes/hiringManager.route')
+const userRoute=require("./routes/user.route")
 
 
 
@@ -19,7 +20,7 @@ app.get("/", (req, res) => {
 // route colling
 app.use("/api/v1/jobPortal",jobsRoute)
 app.use("/api/v1/manager",hiringManagerRoute)
-
+app.use("/api/v1/auth",userRoute) 
 
 
 module.exports = app;
