@@ -10,6 +10,7 @@ app.use(cors());
 const jobsRoute=require('./routes/jobs.route')
 const hiringManagerRoute=require('./routes/hiringManager.route')
 const userRoute=require("./routes/user.route")
+const candidateRoute=require("./routes/candidate.route")
 
 
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/jobPortal",jobsRoute)
 app.use("/api/v1/manager",hiringManagerRoute)
 app.use("/api/v1/auth",userRoute) 
+app.use("/api/v1/candidate",candidateRoute) 
 
 
 module.exports = app;
