@@ -20,11 +20,11 @@ app.get("/", (req, res) => {
 });
 
 // route colling
-app.use("/api/v1/jobPortal",jobsRoute)
-app.use("/api/v1/manager",hiringManagerRoute)
-app.use("/api/v1/auth",userRoute) 
-app.use("/api/v1/candidate",candidateRoute) 
-app.use("/api/v1/admin",adminRoute) 
+app.use("/",jobsRoute)
+app.use("/manager",hiringManagerRoute)
+app.use("/",userRoute) 
+app.use("/",candidateRoute) 
+app.use("/admin",adminRoute) 
 
 
 module.exports = app;
