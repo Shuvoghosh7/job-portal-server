@@ -6,7 +6,7 @@ const verifyToken = require("../middlewar/verifyToken");
 
 router.post('/jobs',jobsController.createJobs)
 router.get('/manager/jobs',verifyToken,jobsController.getJobs)
-router.get('/manager/jobs/:id',verifyToken,authorization("Hiring-Manager"), jobsController.getJobById)
+router.get('/manager/jobs/:id',verifyToken,authorization("Hiring-Manager","Admin"), jobsController.getJobById)
 router.patch('/jobs/:id',jobsController.updateJob)
 
 module.exports=router;
