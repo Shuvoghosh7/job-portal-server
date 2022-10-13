@@ -16,11 +16,9 @@ exports.getCandidateJobByIdService = async (id) => {
     .populate("hiringManager.id")
     return job;
 }
-exports.getCandidateService = async () => {
-    const result = await Candidate.find({})
-    return result;
-}
+
 exports.applyJobsService = async (data) => {
     const result = await Candidate.create(data)
     return result;
 }
+

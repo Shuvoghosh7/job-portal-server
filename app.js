@@ -11,6 +11,7 @@ const jobsRoute=require('./routes/jobs.route')
 const hiringManagerRoute=require('./routes/hiringManager.route')
 const userRoute=require("./routes/user.route")
 const candidateRoute=require("./routes/candidate.route")
+const adminRoute=require("./routes/admin.route")
 
 
 
@@ -23,6 +24,7 @@ app.use("/api/v1/jobPortal",jobsRoute)
 app.use("/api/v1/manager",hiringManagerRoute)
 app.use("/api/v1/auth",userRoute) 
 app.use("/api/v1/candidate",candidateRoute) 
+app.use("/api/v1/admin",adminRoute) 
 
 
 module.exports = app;

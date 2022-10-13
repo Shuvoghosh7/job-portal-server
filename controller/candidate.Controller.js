@@ -1,4 +1,4 @@
-const { applyJobsService, getCandidateJobsService, getCandidateJobByIdService, getCandidateService } = require("../services/candidate.services");
+const { applyJobsService, getCandidateJobsService, getCandidateJobByIdService } = require("../services/candidate.services");
 const { getJobsService, getJobByIdService } = require("../services/jobs.services");
 
 exports.getJobs = async (req, res, next) => {
@@ -65,22 +65,7 @@ exports.getJobById = async (req, res, next) => {
     })
   }
 }
-exports.getCandidate=async(req, res)=>{
-  try {
-    const candidate=await getCandidateService();
-    res.status(200).json({
-      stauts: "success",
-      massage: "successfully get data for all Candidate",
-      data: candidate
-    })
-  } catch (error) {
-    res.status(400).json({
-      stauts:"fail",
-      message: "Data is not found",
-      error : error.message
-    })
-  }
-}
+
 
 exports.applyJobs = async (req, res, next) => {
   const { id } = req.params;
