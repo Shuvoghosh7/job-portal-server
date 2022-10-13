@@ -1,5 +1,6 @@
 const Candidate = require("../models/candidate");
 const HiringManager = require("../models/hiringManager");
+const User = require("../models/User");
 
 
 exports.getCandidateService = async () => {
@@ -14,4 +15,11 @@ exports.getCandidateByIdService = async (id) => {
 exports.getManagerService = async () => {
     const jobs = await HiringManager.find({})
     return jobs;
+}
+
+exports.updateUserRoleService = async (id,data) => {
+    const result = await User.updateOne({_id:id},data,{
+        runValidators:true
+    })
+    return result;
 }

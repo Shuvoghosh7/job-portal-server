@@ -6,7 +6,7 @@ const verifyToken = require("../middlewar/verifyToken");
 
 
 router.get('/candidat',adminController.getCandidate)
-router.get('/candidat/:id', adminController.getCandidateId)
 router.get('/admin/manager', adminController.getManager)
-
+router.get('/candidat/:id', adminController.getCandidateId)
+router.patch('/user/:id',verifyToken,authorization("Admin"),adminController.updateUserRole)
 module.exports=router;

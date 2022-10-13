@@ -1,4 +1,4 @@
-const { getCandidateService, getCandidateByIdService, getManagerService } = require("../services/Admin.Service");
+const { getCandidateService, getCandidateByIdService, getManagerService, updateUserRoleService } = require("../services/Admin.Service");
 
 exports.getCandidate=async (req, res, next) => {
     try {
@@ -57,4 +57,28 @@ exports.getManager=async (req, res, next) => {
         error : error.message
       })
     }
+  }
+
+  exports.updateUserRole=async (req, res, next) => {
+    const {id}=req.params;
+    try {
+      //create method
+      const result =await updateUserRoleService(id,req.body);
+      if(!result.modifiedCount){
+        return res.status(400).json({
+            stauts:"fail",
+            error : "Could not find User with this id"
+          })
+      }
+      res.status(200).json({
+        stauts: "success",
+        massage: "successfully update the User Role",
+      })
+    } catch (error) {
+      res.status(400).json({
+        stauts:"fail",
+        message: "Could not update",
+        error : error.message
+      })
+    }  
   }
