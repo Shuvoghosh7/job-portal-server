@@ -1,5 +1,5 @@
 const Candidate = require("../models/candidate");
-const Jobs = require("../models/jobs");
+const Jobs = require("../models/Jobs");
 
 exports.getCandidateJobsService = async (filters,queries) => {
     const jobs = await Jobs.find(filters)

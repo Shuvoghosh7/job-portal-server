@@ -1,4 +1,4 @@
-const { getCandidateService } = require("../services/candidate.Service");
+const { getCandidateService, getCandidateByIdService } = require("../services/Admin.Service");
 
 exports.getCandidate=async (req, res, next) => {
     try {
@@ -16,3 +16,28 @@ exports.getCandidate=async (req, res, next) => {
       })
     }
   }
+
+exports.getCandidateId=async(req,res)=>{
+    const {id}=req.params;
+    try {
+      //create method
+      const job=await getCandidateByIdService(id);
+      if(!job){
+        return res.status(400).json({
+            stauts:"fail",
+            error : "Could not finds a Job with this id"
+          })
+      }
+      res.status(200).json({
+        stauts: "success",
+        massage: "successfully get job this ID",
+        data: job
+      })
+    } catch (error) {
+      res.status(400).json({
+        stauts:"fail",
+        message: "Job not find this ID",
+        error : error.message
+      })
+    }
+}

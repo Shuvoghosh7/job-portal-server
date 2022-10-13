@@ -1,4 +1,4 @@
-const Jobs = require("../models/jobs");
+const Jobs = require("../models/Jobs");
 
 exports.createJobsService = async (data) => {
     const result = await Jobs.create(data)
