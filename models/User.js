@@ -84,7 +84,6 @@ userSchema.pre("save",function(next){
 userSchema.methods.comparePassword=function(password,hash){
     const isPasswordValid=bcrypt.compareSync(password,hash);
     return isPasswordValid;
-
 }
 
 const User=mongoose.model('User', userSchema);
